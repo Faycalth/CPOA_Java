@@ -15,14 +15,60 @@ import persistance.ConnexionBD;
 
 
 
+public class RamasseurDeBalleDAO
+{
+    private DataSource ds;
+    private Connection connexionBD;
+    private List<RamasseurDeBalle> listeRamasseur;
+    private RamasseurDeBalle ramasseur;
+    private Statement stmt;
+    private ResultSet resultat;
+    
+    public List<RamasseurDeBalle> getLesRamasseurs()
+    {
+        try
+        {
+            stmt = connexionBD.createStatement();
+            resultat = stmt.executeQuery("SELECT numpersonne, nom, prenom, nationalite, idramasseurdeballe from ramasseurdeballe");
+            listeRamasseur = new ArrayList<>();
+            
+            while(resultat.next())
+            {
+                ramasseur = new RamasseurDeBalle(resultat.getInt(1), resultat.getInt(2), resultat.getString(3), resultat.getString(4), resultat.getString(5));
+                listeRamasseur.add(ramasseur);
+            }
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Erreur ! : " + e);
+        }
+        return listeRamasseur;      
+    }
+    
+    public void setDataSource(DataSource ds)
+    {
+        this.ds = ds;
+    }
+
+    public void setConnection(Connection c)
+    {
+        this.connexionBD = c;
+    }
+}
+
+/*
 public abstract class RamasseurDeBalleDAO implements IPlanningDAO {
 private static Connection connexionBD;
+ private Statement stmt;
+   private ResultSet resultat;
 
 public RamasseurDeBalleDAO (Connection conn) {
 RamasseurDeBalleDAO.connexionBD = conn;
 }
-public List<RamasseurDeBalle> getLesRamasseurs() {
+public List<RamasseurDeBalle> getLesRamasseurs() {  
+    
 connexionBD = ConnexionBD.getConnection();
+
 ResultSet rset = null;
 Statement stmt = null;
 List<RamasseurDeBalle> EquipeRamasseur = null;
@@ -87,11 +133,7 @@ System.out.println(ex.getMessage());
 public void setConnection(Connection conn) {
 RamasseurDeBalleDAO.connexionBD = conn;
 }
-/**
-* Méthode qui enregistre une liste d'articles dans la BD d'un coup
-* c'est quasiment le même code qu’insererArticle() mais avec une boucle sur le
-* preparedStatement()
-*/
+
 public int setLesRamasseurs(List<RamasseurDeBalle> EquipeRamasseur) {
 int nbRamasseurInseres = 0;
 PreparedStatement pstmt = null;
@@ -131,3 +173,4 @@ return nbRamasseurInseres;
 
 }
 } 
+*/
