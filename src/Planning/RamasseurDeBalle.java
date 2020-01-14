@@ -26,12 +26,5 @@ public class RamasseurDeBalle extends Personne {
     public void setIdEquipe(EquipeRamasseur idEquipe) {
         this.idEquipe = idEquipe;
     }
-    
-    
-    
-    
-    
-    
-    
-    
+      
 }

@@ -15,13 +15,12 @@ import persistance.ConnexionBD;
 
 
 
-public class RamasseurDeBalleDAO implements IPlanningDAO {
+public abstract class RamasseurDeBalleDAO implements IPlanningDAO {
 private static Connection connexionBD;
 
 public RamasseurDeBalleDAO (Connection conn) {
 RamasseurDeBalleDAO.connexionBD = conn;
 }
-@Override
 public List<RamasseurDeBalle> getLesRamasseurs() {
 connexionBD = ConnexionBD.getConnection();
 ResultSet rset = null;
@@ -53,7 +52,6 @@ System.out.println(ex.getMessage());
 }
 return EquipeRamasseur;
 }
-@Override
 public void insertRamasseur(RamasseurDeBalle a) {
 connexionBD = ConnexionBD.getConnection();
 PreparedStatement pstmt = null;
@@ -94,40 +92,32 @@ RamasseurDeBalleDAO.connexionBD = conn;
 * c'est quasiment le même code qu’insererArticle() mais avec une boucle sur le
 * preparedStatement()
 */
-@Override
-public int setLesArticles(List<Article> lesArticles) {
-int nbArticlesInseres = 0;
+public int setLesRamasseurs(List<RamasseurDeBalle> EquipeRamasseur) {
+int nbRamasseurInseres = 0;
 PreparedStatement pstmt = null;
 String sc = null;
-Article a = null;
-String query = "INSERT INTO Produit.tableproduits (id, libelle, categorie, souscategorie, prix, quantite) VALUES (?,?,?,?,?,?)"; // 6 valeurs
-int nbArticles = lesArticles.size() ;
+RamasseurDeBalle a = null;
+String query = "INSERT INTO RamasseurDeBalle (numpersonne, nom, prenom, nationalite, idramasseurdeballe) VALUES (?,?,?,?,?)"; // 5 valeurs
+int nbRamasseur = EquipeRamasseur.size() ;
 try {
-for (int i = 0; i < nbArticles; i++) {
-a = lesArticles.get(i);
+for (int i = 0; i < nbRamasseur; i++) {
+a = EquipeRamasseur.get(i);
 pstmt = connexionBD.prepareStatement(query);
-pstmt.setInt(1, a.getId());
-pstmt.setString(2, a.getLibelle());
-pstmt.setString(3, a.getCategorie());
-sc = a.getSousCategorie();
-if (sc != null) {
-pstmt.setString(4, sc);
-} else {
-pstmt.setNull(4, java.sql.Types.VARCHAR);
-}
-pstmt.setDouble(5, a.getPrix());
-pstmt.setInt(6, a.getQuantite());
+pstmt.setInt(1, a.getNumPersonne());
+pstmt.setString(2, a.getNom());
+pstmt.setString(3, a.getPrenom());
+pstmt.setString(4, a.getNationalite());
+pstmt.setInt(5, a.getIdRamasseurDeBalle());
 int n = pstmt.executeUpdate();
 if (n == 1) {
-nbArticlesInseres++ ;
-8
+nbRamasseurInseres++ ;
 } else {
-System.out.println(" *** Echec Insertion de l'Article en BD : cet ID existe déjà ");
+System.out.println(" *** Echec Insertion du ramasseur de balle en BD : cet ID existe déjà ");
 }
 }
 } catch (SQLException e) {
-System.out.print("Meth setLesArticles() : problème avec la BD..." + e.getMessage());
-Logger.getLogger( ArticleDaoSql.class.getName() ).log(Level.SEVERE, null, e);
+System.out.print("setLesArticles() : problème avec la BD..." + e.getMessage());
+Logger.getLogger( RamasseurDeBalleDAO.class.getName() ).log(Level.SEVERE, null, e);
 } finally {
 try {
 if (connexionBD != null) {
@@ -136,7 +126,8 @@ connexionBD.close();
 } catch (SQLException ex) {
 System.out.println(ex.getMessage());
 }
-} // bloc finally
-return nbArticlesInseres;
-} // de setArticles()
-// + code des autres méthodes… }
+} 
+return nbRamasseurInseres;
+
+}
+} 

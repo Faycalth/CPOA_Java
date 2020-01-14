@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Z:/Mes%20documents/S3/CPOA/Nouveau%20dossier%20(2)/JavaApplication1/src/Planning/JFrame_Deplacer.java</file>
-            <file>file:/Z:/Mes%20documents/S3/CPOA/Nouveau%20dossier%20(2)/JavaApplication1/src/Planning/JFrame_Tournoi.java</file>
-            <file>file:/Z:/Mes%20documents/S3/CPOA/Nouveau%20dossier%20(2)/JavaApplication1/src/Planning/JFrame_GenererPlanning.java</file>
-            <file>file:/Z:/Mes%20documents/S3/CPOA/Nouveau%20dossier%20(2)/JavaApplication1/src/Planning/JFrame_PlanningGenere.java</file>
-            <file>file:/Z:/Mes%20documents/S3/CPOA/Nouveau%20dossier%20(2)/JavaApplication1/src/Planning/JFrame_Accueuil.java</file>
+            <file>file:/Z:/Mes%20documents/S3/CPOA/Nouveau%20dossier%20(2)/JavaApplication1/src/persistance/ConnexionBD.java</file>
+            <file>file:/Z:/Mes%20documents/S3/CPOA/Nouveau%20dossier%20(2)/JavaApplication1/src/Planning/Personne.java</file>
+            <file>file:/Z:/Mes%20documents/S3/CPOA/Nouveau%20dossier%20(2)/JavaApplication1/src/interfaceDAO/IPlanningDAO.java</file>
+            <file>file:/Z:/Mes%20documents/S3/CPOA/Nouveau%20dossier%20(2)/JavaApplication1/src/Planning/EquipeRamasseur.java</file>
+            <file>file:/Z:/Mes%20documents/S3/CPOA/Nouveau%20dossier%20(2)/JavaApplication1/src/Planning/RamasseurDeBalle.java</file>
+            <file>file:/Z:/Mes%20documents/S3/CPOA/Nouveau%20dossier%20(2)/JavaApplication1/src/planningDAO/RamasseurDeBalleDAO.java</file>
         </group>
     </open-files>
 </project-private>
